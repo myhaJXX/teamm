@@ -5,7 +5,7 @@ import { IProfile } from '@/models/interfaces/IProfile';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: IProfile & ILoading = {
-  tg: null,
+  tg: '',
   login: '',
   games: null,
   friends: null,
@@ -25,11 +25,10 @@ const profileSlice = createSlice({
       _state,
       _action: PayloadAction<ILogin & { actionButton: string }>
     ) => {
-      console.log(_state);
+      console.log(_action.payload);
     },
-    profileSuccess: (state, action: PayloadAction<IProfile>) => {
-      state = { ...action.payload };
-      console.log(state);
+    profileSuccess: (_state, action: PayloadAction<IProfile>) => {
+      _state = { ...action.payload };
     },
     profileError: (state, action: PayloadAction<boolean>) => {
       state.error = action.payload;

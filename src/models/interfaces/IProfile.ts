@@ -2,7 +2,7 @@ import { IReview } from './IReview';
 import { IPost } from './IPost';
 
 export interface IProfile {
-  tg: string | null;
+  tg?: string;
   login: string;
   games: string[] | null;
   friends: string[] | null;

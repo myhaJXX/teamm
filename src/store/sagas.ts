@@ -9,6 +9,7 @@ import { userLogin } from '@/api/UserLogin';
 import { apiUserInfo } from '@/api/ApiUserInfo';
 import { IProfile } from '@/models/interfaces/IProfile';
 import { apiUserRegister } from '@/api/ApiUserRegister';
+import { constAccountLogin } from '@/constants/constAccount';
 
 function* sagaProfile(action: ReturnType<typeof profileRequest>) {
   try {
@@ -16,7 +17,8 @@ function* sagaProfile(action: ReturnType<typeof profileRequest>) {
     yield put(profileError(false));
     const { tg, actionButton, ...basicInfo } = action.payload;
     let data: IProfile;
-    if (actionButton === 'login') {
+    console.log(action);
+    if (actionButton === constAccountLogin) {
       const status: number = yield call(
         async () => await userLogin({ ...basicInfo })
       );
